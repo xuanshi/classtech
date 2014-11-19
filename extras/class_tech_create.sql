@@ -70,6 +70,7 @@ CREATE TABLE class (
     id bigint  NOT NULL DEFAULT nextval('seq_object_id'),
     name varchar(200)  NOT NULL,
     year_id bigint  NOT NULL,
+    manager_id bigint NOT NULL,
     CONSTRAINT class_ak_year_name UNIQUE (name, year_id) NOT DEFERRABLE  INITIALLY IMMEDIATE ,
     CONSTRAINT class_pk PRIMARY KEY (id)
 );
@@ -301,6 +302,16 @@ CREATE TABLE year (
 ALTER TABLE class ADD CONSTRAINT class_year 
     FOREIGN KEY (year_id)
     REFERENCES year (id)
+    NOT DEFERRABLE 
+    INITIALLY IMMEDIATE 
+;
+
+-- Reference:  class_teacher (table: class)
+
+
+ALTER TABLE class ADD CONSTRAINT class_manager 
+    FOREIGN KEY (manager_id)
+    REFERENCES teacher (person_id)
     NOT DEFERRABLE 
     INITIALLY IMMEDIATE 
 ;

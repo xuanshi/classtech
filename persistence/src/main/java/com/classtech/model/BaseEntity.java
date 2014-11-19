@@ -1,6 +1,8 @@
 package com.classtech.model;
 
 import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
@@ -9,8 +11,7 @@ public abstract class BaseEntity {
 
 	protected Long id;
 
-	// TODO use defined database sequence
-	// @GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
 	@Column(insertable = false, updatable = false, unique = true, nullable = false)
 	public Long getId() {

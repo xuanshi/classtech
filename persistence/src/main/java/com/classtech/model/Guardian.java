@@ -1,15 +1,17 @@
 package com.classtech.model;
 
 import javax.persistence.AttributeOverride;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 
 @Entity
-@AttributeOverride(name = "id", column = @Column(name = "person_id"))
+@AttributeOverride(name = "id", column = @Column(name = "person_id", insertable = true))
 public final class Guardian extends BaseEntity {
 
 	private Person person;
@@ -18,7 +20,8 @@ public final class Guardian extends BaseEntity {
 
 	private Student student;
 
-	@OneToOne(fetch = FetchType.LAZY)
+	@MapsId
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "person_id")
 	public Person getPerson() {
 		return person;
@@ -28,7 +31,7 @@ public final class Guardian extends BaseEntity {
 		this.person = person;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "guardian_relationship_type_id")
 	public GuardianRelationshipType getType() {
 		return type;
@@ -38,7 +41,7 @@ public final class Guardian extends BaseEntity {
 		this.type = type;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "student_person_id")
 	public Student getStudent() {
 		return student;

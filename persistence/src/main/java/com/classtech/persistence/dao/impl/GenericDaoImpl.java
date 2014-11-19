@@ -55,9 +55,9 @@ public abstract class GenericDaoImpl<T> implements GenericDao<T> {
 	}
 
 	@Override
-	@SuppressWarnings("unchecked")
 	public T findById(final Long id, final boolean lock) {
 		return new HibernateWrapper<T>() {
+			@SuppressWarnings("unchecked")
 			@Override
 			T runStatement(Session session) {
 				T entity;
@@ -100,6 +100,7 @@ public abstract class GenericDaoImpl<T> implements GenericDao<T> {
 			@Override
 			T runStatement(Session session) {
 				session.save(entity);
+				session.update(entity);
 				return entity;
 			}
 		}.execute();
@@ -122,6 +123,21 @@ public abstract class GenericDaoImpl<T> implements GenericDao<T> {
 			@Override
 			T runStatement(Session session) {
 				session.delete(entity);
+				return entity;
+			}
+		}.execute();
+	}
+
+	@Override
+	public void delete(final Long id) {
+		new HibernateWrapper<T>() {
+			@SuppressWarnings("unchecked")
+			@Override
+			T runStatement(Session session) {
+				T entity = (T) session.load(getPersistentClass(), id);
+				if (entity != null) {
+					session.delete(entity);
+				}
 				return entity;
 			}
 		}.execute();

@@ -2,11 +2,13 @@ package com.classtech.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -16,6 +18,8 @@ public class SchoolClass extends BaseEntity {
 	private String name;
 
 	private Year year;
+
+	private Teacher manager;
 
 	private List<Schedule> schedules;
 
@@ -29,7 +33,17 @@ public class SchoolClass extends BaseEntity {
 		this.name = name;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name = "manager_id")
+	public Teacher getManager() {
+		return manager;
+	}
+
+	public void setManager(Teacher manager) {
+		this.manager = manager;
+	}
+
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "year_id")
 	public Year getYear() {
 		return year;

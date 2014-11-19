@@ -2,6 +2,7 @@ package com.classtech.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
@@ -29,7 +30,7 @@ public class Facility extends BaseEntity {
 		this.name = name;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "school_id")
 	public School getSchool() {
 		return school;
@@ -39,7 +40,7 @@ public class Facility extends BaseEntity {
 		this.school = school;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "facility_type_id")
 	public FacilityType getFacilityType() {
 		return facilityType;
@@ -49,7 +50,7 @@ public class Facility extends BaseEntity {
 		this.facilityType = facilityType;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "seating_chart_type_id")
 	public SeatingChartType getSeatingChartType() {
 		return seatingChartType;

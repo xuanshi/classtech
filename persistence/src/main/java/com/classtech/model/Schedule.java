@@ -1,5 +1,6 @@
 package com.classtech.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -52,7 +53,7 @@ public class Schedule extends BaseEntity {
 		this.endTime = endTime;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "class_id")
 	public SchoolClass getSchoolClass() {
 		return schoolClass;
@@ -62,7 +63,7 @@ public class Schedule extends BaseEntity {
 		this.schoolClass = schoolClass;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "curriculum_id")
 	public Curriculum getCurriculum() {
 		return curriculum;
@@ -72,7 +73,7 @@ public class Schedule extends BaseEntity {
 		this.curriculum = curriculum;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "facility_id")
 	public Facility getFacility() {
 		return facility;

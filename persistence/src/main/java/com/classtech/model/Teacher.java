@@ -11,11 +11,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
-@AttributeOverride(name = "id", column = @Column(name = "person_id"))
+@AttributeOverride(name = "id", column = @Column(name = "person_id", insertable = true))
 public class Teacher extends BaseEntity {
 
 	private Person person;
@@ -24,11 +25,14 @@ public class Teacher extends BaseEntity {
 
 	private School school;
 
+	private SchoolClass managingClass;
+
 	private List<Curriculum> curriculums;
 
 	private List<Log> logs;
 
-	@OneToOne(fetch = FetchType.LAZY)
+	@MapsId
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "person_id")
 	public Person getPerson() {
 		return person;
@@ -47,7 +51,7 @@ public class Teacher extends BaseEntity {
 		this.teacherNumber = teacherNumber;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "school_id")
 	public School getSchool() {
 		return school;
@@ -55,6 +59,15 @@ public class Teacher extends BaseEntity {
 
 	public void setSchool(School school) {
 		this.school = school;
+	}
+
+	@OneToOne(mappedBy = "manager")
+	public SchoolClass getManagingClass() {
+		return managingClass;
+	}
+
+	public void setManagingClass(SchoolClass managingClass) {
+		this.managingClass = managingClass;
 	}
 
 	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })

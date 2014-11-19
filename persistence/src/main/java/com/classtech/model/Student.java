@@ -3,16 +3,18 @@ package com.classtech.model;
 import java.util.List;
 
 import javax.persistence.AttributeOverride;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
-@AttributeOverride(name = "id", column = @Column(name = "person_id"))
+@AttributeOverride(name = "id", column = @Column(name = "person_id", insertable = true))
 public class Student extends BaseEntity {
 
 	private Person person;
@@ -25,7 +27,8 @@ public class Student extends BaseEntity {
 
 	private List<Log> logs;
 
-	@OneToOne(fetch = FetchType.LAZY)
+	@MapsId
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "person_id")
 	public Person getPerson() {
 		return person;
@@ -53,7 +56,7 @@ public class Student extends BaseEntity {
 		this.seatNumber = seatNumber;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "class_id")
 	public SchoolClass getSchoolClass() {
 		return schoolClass;

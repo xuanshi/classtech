@@ -8,19 +8,6 @@
 
 
 -- foreign keys
-DROP SEQUENCE seq_object_id;
-
-
-DROP SEQUENCE seq_person_id;
-
-
-DROP SEQUENCE seq_type_id;
-
-
-
-
-
--- foreign keys
 ALTER TABLE class DROP CONSTRAINT class_year;
 
 ALTER TABLE curriculum DROP CONSTRAINT curriculum_curriculum_category;
@@ -100,6 +87,20 @@ DROP TABLE year;
 
 
 
+
+
+
+
+
+
+-- foreign keys
+DROP SEQUENCE seq_object_id;
+
+
+DROP SEQUENCE seq_person_id;
+
+
+DROP SEQUENCE seq_type_id;
 
 -- End of file.
 

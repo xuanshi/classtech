@@ -2,6 +2,7 @@ package com.classtech.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -42,7 +43,7 @@ public class Curriculum extends BaseEntity {
 		this.shortName = shortName;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "curriculum_category_id")
 	public CurriculumCategory getCateogry() {
 		return cateogry;
@@ -52,7 +53,7 @@ public class Curriculum extends BaseEntity {
 		this.cateogry = cateogry;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "grade_id")
 	public Grade getGrade() {
 		return grade;

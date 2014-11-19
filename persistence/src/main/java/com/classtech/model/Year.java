@@ -2,6 +2,7 @@ package com.classtech.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -27,7 +28,7 @@ public class Year extends BaseEntity {
 		this.year = year;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "school_id")
 	public School getSchool() {
 		return school;
