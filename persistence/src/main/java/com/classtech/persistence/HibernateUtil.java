@@ -5,7 +5,7 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 
-class HibernateUtil {
+public class HibernateUtil {
 
 	private static SessionFactory sessionFactory;
 
@@ -29,7 +29,7 @@ class HibernateUtil {
 
 	public static SessionFactory getSessionFactory() {
 		if (sessionFactory == null) {
-			sessionFactory = buildSessionFactory("/hibernate.cfg.xml");
+			sessionFactory = buildSessionFactory("/hibernate.cfg.test.xml");
 		}
 		return sessionFactory;
 	}

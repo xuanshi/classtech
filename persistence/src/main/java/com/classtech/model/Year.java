@@ -28,7 +28,7 @@ public class Year extends BaseEntity {
 		this.year = year;
 	}
 
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "school_id")
 	public School getSchool() {
 		return school;

@@ -34,7 +34,7 @@ public class Schedule extends BaseEntity {
 	}
 
 	@Column(name = "start_time")
-	@Type(type = "org.joda.time.contrib.hibernate.PersistentLocalTimeAsTime")
+	@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalTime")
 	public LocalTime getStartTime() {
 		return startTime;
 	}
@@ -44,7 +44,7 @@ public class Schedule extends BaseEntity {
 	}
 
 	@Column(name = "end_time")
-	@Type(type = "org.joda.time.contrib.hibernate.PersistentLocalTimeAsTime")
+	@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalTime")
 	public LocalTime getEndTime() {
 		return endTime;
 	}

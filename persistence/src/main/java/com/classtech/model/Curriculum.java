@@ -18,7 +18,7 @@ public class Curriculum extends BaseEntity {
 
 	private String shortName;
 
-	private CurriculumCategory cateogry;
+	private CurriculumCategory category;
 
 	private Grade grade;
 
@@ -45,12 +45,12 @@ public class Curriculum extends BaseEntity {
 
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "curriculum_category_id")
-	public CurriculumCategory getCateogry() {
-		return cateogry;
+	public CurriculumCategory getCategory() {
+		return category;
 	}
 
-	public void setCateogry(CurriculumCategory cateogry) {
-		this.cateogry = cateogry;
+	public void setCategory(CurriculumCategory category) {
+		this.category = category;
 	}
 
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
