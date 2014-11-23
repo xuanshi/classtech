@@ -400,7 +400,7 @@ ALTER TABLE log ADD CONSTRAINT log_award_type
 
 
 ALTER TABLE log ADD CONSTRAINT log_student 
-    FOREIGN KEY (id)
+    FOREIGN KEY (student_id)
     REFERENCES student (person_id)
     NOT DEFERRABLE 
     INITIALLY IMMEDIATE 
@@ -410,7 +410,7 @@ ALTER TABLE log ADD CONSTRAINT log_student
 
 
 ALTER TABLE log ADD CONSTRAINT log_teacher 
-    FOREIGN KEY (id)
+    FOREIGN KEY (teacher_id)
     REFERENCES teacher (person_id)
     NOT DEFERRABLE 
     INITIALLY IMMEDIATE 

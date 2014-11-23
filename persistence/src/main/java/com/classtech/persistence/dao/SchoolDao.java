@@ -4,4 +4,5 @@ import com.classtech.model.School;
 
 public interface SchoolDao extends GenericDao<School> {
 
+	School findByName(String name);
 }

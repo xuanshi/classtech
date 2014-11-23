@@ -23,11 +23,11 @@ INSERT INTO curriculum_category(name) VALUES
      ('音乐');
 
 INSERT INTO grade(name) VALUES
-     ('一年级')，
-     ('二年级')，
-     ('三年级')，
-     ('四年级')，
-     ('五年级')，
+     ('一年级'),
+     ('二年级'),
+     ('三年级'),
+     ('四年级'),
+     ('五年级'),
      ('六年级');
 
 

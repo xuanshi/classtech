@@ -3,6 +3,7 @@ package com.classtech.rest.school;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.classtech.model.School;
@@ -11,6 +12,9 @@ import com.classtech.model.Year;
 
 @Service
 public class SchoolConverter {
+
+	@Autowired
+	private PersonConverter personConverter;
 
 	public List<SchoolDto> toSchoolDtos(List<School> schools) {
 		List<SchoolDto> schoolDtos = new ArrayList<SchoolDto>();
@@ -22,6 +26,9 @@ public class SchoolConverter {
 	}
 
 	public SchoolDto toSchoolDto(School school) {
+		if (school == null) {
+			return null;
+		}
 		SchoolDto dto = new SchoolDto();
 		dto.name = school.getName();
 		dto.years = new ArrayList<YearDto>();
@@ -33,6 +40,9 @@ public class SchoolConverter {
 	}
 
 	public YearDto toYearDto(Year year) {
+		if (year == null) {
+			return null;
+		}
 		YearDto dto = new YearDto();
 		dto.entranceYear = year.getEntranceYear();
 		dto.classes = new ArrayList<SchoolClassDto>();
@@ -44,8 +54,25 @@ public class SchoolConverter {
 	}
 
 	public SchoolClassDto toSchoolClassDto(SchoolClass schoolClass) {
+		if (schoolClass == null) {
+			return null;
+		}
 		SchoolClassDto dto = new SchoolClassDto();
 		dto.name = schoolClass.getName();
 		return dto;
 	}
+
+	public SchoolClassDetailDto toSchoolClassDetialDto(SchoolClass schoolClass) {
+		if (schoolClass == null) {
+			return null;
+		}
+		SchoolClassDetailDto dto = new SchoolClassDetailDto();
+		dto.name = schoolClass.getName();
+		dto.year = schoolClass.getYear().getEntranceYear();
+		dto.schoolName = schoolClass.getYear().getSchool().getName();
+		dto.manager = personConverter.toTeacherDto(schoolClass.getManager());
+		dto.students = personConverter.toStudentDtos(schoolClass.getStudents());
+		return dto;
+	}
+
 }

@@ -9,9 +9,11 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Example;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.classtech.persistence.dao.ClasstechDataLoadingException;
 import com.classtech.persistence.dao.GenericDao;
 
 public abstract class GenericDaoImpl<T> implements GenericDao<T> {
@@ -159,13 +161,42 @@ public abstract class GenericDaoImpl<T> implements GenericDao<T> {
 		return new HibernateWrapper<List<T>>() {
 			@Override
 			List<T> runStatement(Session session) {
-				Criteria crit = session.createCriteria(getPersistentClass());
+				Criteria criteria = session
+						.createCriteria(getPersistentClass());
 				for (Criterion c : criterion) {
-					crit.add(c);
+					criteria.add(c);
 				}
-				return crit.list();
+				return criteria.list();
 			}
 		}.execute();
+	}
 
+	protected T findUniqueByCriteria(final Criterion... criterion) {
+		return uniqueResult(findByCriteria(criterion));
+	}
+
+	protected List<T> findByCriteria(final DetachedCriteria criteria) {
+		return new HibernateWrapper<List<T>>() {
+			@SuppressWarnings("unchecked")
+			@Override
+			List<T> runStatement(Session session) {
+				return criteria.getExecutableCriteria(session).list();
+			}
+		}.execute();
+	}
+
+	protected T findUniqueByCriteria(final DetachedCriteria criteria) {
+		return uniqueResult(findByCriteria(criteria));
+	}
+
+	private T uniqueResult(List<T> list) {
+		if (list.size() == 0) {
+			return null;
+		}
+		if (list.size() > 1) {
+			throw new ClasstechDataLoadingException(
+					"has duplicates, which should not happen!");
+		}
+		return list.get(0);
 	}
 }
