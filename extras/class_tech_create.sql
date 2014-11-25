@@ -490,7 +490,7 @@ ALTER TABLE teacher_curriculum ADD CONSTRAINT teacher_curriculum_curriculum
 
 
 ALTER TABLE teacher_curriculum ADD CONSTRAINT teacher_curriculum_teacher 
-    FOREIGN KEY (curriculum_id)
+    FOREIGN KEY (teacher_id)
     REFERENCES teacher (person_id)
     NOT DEFERRABLE 
     INITIALLY IMMEDIATE 

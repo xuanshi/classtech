@@ -9,6 +9,7 @@
    	 	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
 	<context:component-scan base-package="com.classtech" />
+	<context:property-placeholder location="classpath:db.local.properties" />
 
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
@@ -17,6 +18,13 @@
 			<list>
 				<value>com.classtech.model</value>
 			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.connection.url">${connection.url}</prop>
+				<prop key="hibernate.connection.username">${connection.username}</prop>
+				<prop key="hibernate.connection.password">${connection.password}</prop>
+			</props>
 		</property>
 	</bean>
 

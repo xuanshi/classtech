@@ -82,12 +82,12 @@ public final class SchoolPopulator {
 	private short teacherNo = 0;
 	private short studentNo = 0;
 
-	private int numOfClasses = 2;
-	private int numOfTeachers = 2;
-	private int numOfStudents = 2;
-	private int numOfFacilities = 2;
-	private int numOfTeachersPerCurriculum = 2;
-	private int maxNumOfLogsPerStudent = 2;
+	private int numOfClasses = 10;
+	private int numOfTeachers = 10;
+	private int numOfStudents = 10;
+	private int numOfFacilities = 10;
+	private int numOfCurriculumsPerTeacher = 1;
+	private int maxNumOfLogsPerStudent = 10;
 
 	private School school;
 	private List<SchoolClass> schoolClasses = new ArrayList<SchoolClass>();
@@ -174,10 +174,10 @@ public final class SchoolPopulator {
 	private void populate(String name) {
 		logger.info("Start populating school");
 		populateSchool(name);
+		populateCurriculums();
 		populateTeachers();
 		populateYears();
 		populateFacilities();
-		populateCurriculums();
 		populateSchedules();
 		populateLogs();
 		session.flush();
@@ -241,6 +241,8 @@ public final class SchoolPopulator {
 		teacher.setSchool(school);
 		teacher.setTeacherNumber(teacherNo++);
 		teacher.setPerson(createPerson());
+		teacher.setCurriculums(randomList(curriculums.values(),
+				numOfCurriculumsPerTeacher));
 		teachers.add(teacher);
 		return save(teacher);
 	}
@@ -321,8 +323,6 @@ public final class SchoolPopulator {
 		curriculum.setGrade(grade);
 		curriculum.setName(grade.getName() + category.getName());
 		curriculum.setShortName(category.getName());
-		curriculum
-				.setTeachers(randomList(teachers, numOfTeachersPerCurriculum));
 		curriculums.put(grade, curriculum);
 		return save(curriculum);
 	}
@@ -368,8 +368,8 @@ public final class SchoolPopulator {
 		log.setLogger(random(teachers));
 		log.setAwardType(random(awardTypes));
 		log.setContent("内容");
-		DateTime time = new DateTime().withDate(2014, new Random().nextInt(12) + 1,
-				new Random().nextInt(30));
+		DateTime time = new DateTime().withDate(2014,
+				new Random().nextInt(12) + 1, new Random().nextInt(28) + 1);
 		log.setTimestamp(time);
 		return save(log);
 	}

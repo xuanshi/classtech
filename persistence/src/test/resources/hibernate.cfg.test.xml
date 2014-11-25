@@ -5,10 +5,6 @@
 	<session-factory>
 		<!-- Database connection settings -->
 		<property name="connection.driver_class">org.postgresql.Driver</property>
-		<property name="connection.url">jdbc:postgresql://localhost:5432/classtech
-		</property>
-		<property name="connection.username">Xuan</property>
-		<property name="connection.password"></property>
 		<property name="default_schema">public</property>
 
 		<!-- JDBC connection pool (use the built-in) -->

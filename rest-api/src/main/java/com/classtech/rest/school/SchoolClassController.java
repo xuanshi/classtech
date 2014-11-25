@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.classtech.persistence.dao.SchoolClassDao;
 
 @RestController
-@RequestMapping(value = "/class")
+@RequestMapping(value = "/classes")
 public class SchoolClassController {
 
 	@Autowired

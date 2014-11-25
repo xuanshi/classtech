@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.classtech.persistence.dao.SchoolDao;
 
 @RestController
-@RequestMapping(value = "/")
+@RequestMapping(value = "/schools")
 public class SchoolController {
 
 	@Autowired
@@ -20,14 +20,14 @@ public class SchoolController {
 	@Autowired
 	private SchoolDao schoolDao;
 
-	@RequestMapping(value = "schools", method = RequestMethod.GET)
+	@RequestMapping(method = RequestMethod.GET)
 	public List<SchoolDto> getSchools() {
 		List<SchoolDto> dtos = schoolConverter
 				.toSchoolDtos(schoolDao.findAll());
 		return dtos;
 	}
 
-	@RequestMapping(value = "school/{name}", method = RequestMethod.GET)
+	@RequestMapping(value = "{name}", method = RequestMethod.GET)
 	public SchoolDto getSchool(@PathVariable String name) {
 		return schoolConverter.toSchoolDto(schoolDao.findByName(name));
 	}
