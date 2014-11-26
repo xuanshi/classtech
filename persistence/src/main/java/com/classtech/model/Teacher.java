@@ -71,7 +71,7 @@ public class Teacher extends BaseEntity {
 	}
 
 	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
-	@JoinTable(name = "teacher_curriculum", joinColumns = { @JoinColumn(name = "teacher_id", referencedColumnName = "person_id") }, inverseJoinColumns = { @JoinColumn(name = "curriculum_id") })
+	@JoinTable(name = "teacher_curriculum", joinColumns = { @JoinColumn(name = "teacher_id", referencedColumnName = "person_id") }, inverseJoinColumns = { @JoinColumn(name = "curriculum_id", referencedColumnName = "id") })
 	public List<Curriculum> getCurriculums() {
 		return curriculums;
 	}

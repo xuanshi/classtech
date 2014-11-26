@@ -3,6 +3,7 @@ package com.classtech.persistence.data;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -83,10 +84,10 @@ public final class SchoolPopulator {
 	private short studentNo = 0;
 
 	private int numOfClasses = 10;
-	private int numOfTeachers = 10;
-	private int numOfStudents = 10;
-	private int numOfFacilities = 10;
-	private int numOfCurriculumsPerTeacher = 1;
+	private int numOfTeachers = 100;
+	private int numOfStudents = 40;
+	private int numOfFacilities = 40;
+	private int numOfCurriculumsPerTeacher = 5;
 	private int maxNumOfLogsPerStudent = 10;
 
 	private School school;
@@ -413,8 +414,9 @@ public final class SchoolPopulator {
 	private <T> List<T> randomList(Collection<T> c, int count) {
 		List<T> result = new ArrayList<T>(count);
 		List<T> list = new ArrayList<T>(c);
-		for (int i = 0; i < count; i++) {
-			result.add(list.get(new Random().nextInt(list.size())));
+		Collections.shuffle(list, new Random());
+		for (int i = 0; i < count && i < list.size(); i++) {
+			result.add(list.get(i));
 		}
 		return result;
 	}
