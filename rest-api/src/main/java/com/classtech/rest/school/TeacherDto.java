@@ -8,4 +8,5 @@ public class TeacherDto implements Serializable {
 
 	public PersonDto person;
 	public Short teacherNo;
+	public String schoolName;
 }

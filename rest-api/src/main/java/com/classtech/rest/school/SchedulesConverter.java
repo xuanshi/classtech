@@ -25,6 +25,9 @@ public class SchedulesConverter {
 	}
 
 	public ScheduleDto toSchoolSchuedleDto(Schedule schedule) {
+		if (schedule == null) {
+			return null;
+		}
 		ScheduleDto dto = new ScheduleDto();
 		dto.schoolClass = schoolConverter.toSchoolClassDto(schedule
 				.getSchoolClass());
@@ -36,7 +39,18 @@ public class SchedulesConverter {
 		return dto;
 	}
 
+	public List<CurriculumDto> toCurriculumDtos(List<Curriculum> curriculums) {
+		List<CurriculumDto> dtos = new ArrayList<CurriculumDto>();
+		for (Curriculum curriculum : curriculums) {
+			dtos.add(toCurriculumDto(curriculum));
+		}
+		return dtos;
+	}
+
 	public CurriculumDto toCurriculumDto(Curriculum curriculum) {
+		if (curriculum == null) {
+			return null;
+		}
 		CurriculumDto dto = new CurriculumDto();
 		dto.name = curriculum.getName();
 		dto.category = curriculum.getCategory().getName();
@@ -45,6 +59,9 @@ public class SchedulesConverter {
 	}
 
 	public FacilityDto toFacilityDto(Facility facility) {
+		if (facility == null) {
+			 return null;
+		}
 		FacilityDto dto = new FacilityDto();
 		dto.name = facility.getName();
 		dto.type = facility.getFacilityType().getName();

@@ -6,7 +6,7 @@ import com.classtech.model.SeatingChartType;
 import com.classtech.persistence.dao.SeatingChartTypeDao;
 
 @Repository
-public class SeatingChartTypeDaoImpl extends GenericDaoImpl<SeatingChartType>
+public class SeatingChartTypeDaoImpl extends TypeDaoImpl<SeatingChartType>
 		implements SeatingChartTypeDao {
 
 }

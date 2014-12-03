@@ -7,6 +7,6 @@ import com.classtech.persistence.dao.CurriculumCategoryDao;
 
 @Repository
 public class CurriculumCategoryDaoImpl extends
-		GenericDaoImpl<CurriculumCategory> implements CurriculumCategoryDao {
+TypeDaoImpl<CurriculumCategory> implements CurriculumCategoryDao {
 
 }

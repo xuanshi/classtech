@@ -13,7 +13,11 @@ import com.classtech.model.Teacher;
 public class PersonConverter {
 
 	public PersonDto toPersonDto(Person person) {
+		if (person == null) {
+			return null;
+		}
 		PersonDto dto = new PersonDto();
+		dto.id = person.getId();
 		dto.firstName = person.getFirstName();
 		dto.lastName = person.getLastName();
 		dto.email = person.getEmail();
@@ -25,6 +29,7 @@ public class PersonConverter {
 		TeacherDto dto = new TeacherDto();
 		dto.person = toPersonDto(teacher.getPerson());
 		dto.teacherNo = teacher.getTeacherNumber();
+		dto.schoolName = teacher.getSchool().getName();
 		return dto;
 	}
 

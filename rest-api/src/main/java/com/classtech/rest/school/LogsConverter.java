@@ -7,9 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.classtech.model.Log;
+import com.classtech.persistence.dao.AwardTypeDao;
 
 @Service
 public class LogsConverter {
+
+	@Autowired
+	private AwardTypeDao awardTypeDao;
 
 	@Autowired
 	private PersonConverter personConverter;
@@ -23,6 +27,9 @@ public class LogsConverter {
 	}
 
 	public LogDto toLogDto(Log log) {
+		if (log == null) {
+			return null;
+		}
 		LogDto dto = new LogDto();
 		dto.timestamp = log.getTimestamp().toString();
 		dto.awardType = log.getAwardType().getName();

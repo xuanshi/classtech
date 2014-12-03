@@ -2,6 +2,6 @@ package com.classtech.persistence.dao;
 
 import com.classtech.model.CurriculumCategory;
 
-public interface CurriculumCategoryDao extends GenericDao<CurriculumCategory> {
+public interface CurriculumCategoryDao extends TypeDao<CurriculumCategory> {
 
 }

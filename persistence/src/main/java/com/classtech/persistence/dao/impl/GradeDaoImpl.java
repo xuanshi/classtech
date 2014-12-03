@@ -6,6 +6,6 @@ import com.classtech.model.Grade;
 import com.classtech.persistence.dao.GradeDao;
 
 @Repository
-public class GradeDaoImpl extends GenericDaoImpl<Grade> implements GradeDao {
+public class GradeDaoImpl extends TypeDaoImpl<Grade> implements GradeDao {
 
 }

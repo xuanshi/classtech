@@ -21,6 +21,8 @@ public class Schedule extends BaseEntity {
 
 	private SchoolClass schoolClass;
 
+	private Teacher teacher;
+
 	private Curriculum curriculum;
 
 	private Facility facility;
@@ -61,6 +63,16 @@ public class Schedule extends BaseEntity {
 
 	public void setSchoolClass(SchoolClass schoolClass) {
 		this.schoolClass = schoolClass;
+	}
+
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name = "teacher_id")
+	public Teacher getTeacher() {
+		return teacher;
+	}
+
+	public void setTeacher(Teacher teacher) {
+		this.teacher = teacher;
 	}
 
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)

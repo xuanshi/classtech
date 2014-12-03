@@ -7,7 +7,7 @@ import com.classtech.persistence.dao.GuardianRelationshipTypeDao;
 
 @Repository
 public class GuardianRelationshipTypeDaoImpl extends
-		GenericDaoImpl<GuardianRelationshipType> implements
+		TypeDaoImpl<GuardianRelationshipType> implements
 		GuardianRelationshipTypeDao {
 
 }
