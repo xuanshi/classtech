@@ -342,14 +342,18 @@ public final class SchoolPopulator {
 
 	private Schedule createSchedule(SchoolClass schoolClass, char day,
 			int startHour) {
+		Curriculum curriculum = random(curriculums
+				.get(calculateGrade(schoolClass.getYear())));
+		session.refresh(curriculum);
+		Teacher teacher = random(curriculum.getTeachers());
 		Schedule schedule = new Schedule();
 		schedule.setSchoolClass(schoolClass);
+		schedule.setTeacher(teacher);
 		schedule.setDay(day);
 		schedule.setStartTime(new LocalTime(startHour, 0));
 		schedule.setEndTime(new LocalTime(startHour + 1, 0));
 		schedule.setFacility(random(facilities));
-		schedule.setCurriculum(random(curriculums
-				.get(calculateGrade(schoolClass.getYear()))));
+		schedule.setCurriculum(curriculum);
 		return save(schedule);
 	}
 

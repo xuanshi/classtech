@@ -3,6 +3,7 @@ package com.classtech.persistence.dao.impl;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.classtech.model.SchoolClass;
 import com.classtech.persistence.dao.SchoolClassDao;
 
 public class SchoolClassDaoImplTest extends AbstractDaoTest {
@@ -11,6 +12,7 @@ public class SchoolClassDaoImplTest extends AbstractDaoTest {
 
 	@Test
 	public void test() {
-		schoolClassDao.findByName("上海小学", "2009", "一班");
+		SchoolClass s = schoolClassDao.findByName("上海小学", "2009", "一班");
+		System.out.println(s);
 	}
 }

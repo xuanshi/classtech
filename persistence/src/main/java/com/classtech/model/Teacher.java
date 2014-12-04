@@ -14,6 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.OrderBy;
 
 @Entity
 @AttributeOverride(name = "id", column = @Column(name = "person_id", insertable = true))
@@ -26,6 +27,8 @@ public class Teacher extends BaseEntity {
 	private School school;
 
 	private SchoolClass managingClass;
+
+	private List<Schedule> schedules;
 
 	private List<Curriculum> curriculums;
 
@@ -70,8 +73,19 @@ public class Teacher extends BaseEntity {
 		this.managingClass = managingClass;
 	}
 
+	@OneToMany(mappedBy = "teacher")
+	@OrderBy("day, startTime, endTime")
+	public List<Schedule> getSchedules() {
+		return schedules;
+	}
+
+	public void setSchedules(List<Schedule> schedules) {
+		this.schedules = schedules;
+	}
+
 	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
 	@JoinTable(name = "teacher_curriculum", joinColumns = { @JoinColumn(name = "teacher_id", referencedColumnName = "person_id") }, inverseJoinColumns = { @JoinColumn(name = "curriculum_id", referencedColumnName = "id") })
+	@OrderBy("grade, name")
 	public List<Curriculum> getCurriculums() {
 		return curriculums;
 	}

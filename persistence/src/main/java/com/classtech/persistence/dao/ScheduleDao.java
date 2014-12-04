@@ -8,4 +8,6 @@ public interface ScheduleDao extends GenericDao<Schedule> {
 
 	List<Schedule> findByName(String schoolName, String year,
 			String schoolClassName);
+
+	List<Schedule> findByTeacher(String schoolName, Short teacherNo);
 }

@@ -6,7 +6,7 @@ import com.classtech.model.FacilityType;
 import com.classtech.persistence.dao.FacilityTypeDao;
 
 @Repository
-public class FacilityTypeDaoImpl extends GenericDaoImpl<FacilityType> implements
+public class FacilityTypeDaoImpl extends TypeDaoImpl<FacilityType> implements
 		FacilityTypeDao {
 
 }

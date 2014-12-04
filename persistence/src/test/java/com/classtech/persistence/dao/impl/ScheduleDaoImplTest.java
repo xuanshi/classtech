@@ -11,7 +11,12 @@ public class ScheduleDaoImplTest extends AbstractDaoTest {
 	ScheduleDao dao;
 
 	@Test
-	public void test() {
+	public void testFindByName() {
 		dao.findByName("上海小学", "2009", "一班");
+	}
+
+	@Test
+	public void testFindByTeacher() {
+		dao.findByTeacher("上海小学", (short) 0);
 	}
 }

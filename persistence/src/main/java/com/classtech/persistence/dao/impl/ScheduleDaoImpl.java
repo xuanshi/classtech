@@ -28,4 +28,15 @@ public class ScheduleDaoImpl extends GenericDaoImpl<Schedule> implements
 		return findByCriteria(criteria);
 	}
 
+	@Override
+	public List<Schedule> findByTeacher(String schoolName, Short teacherNo) {
+		DetachedCriteria criteria = DetachedCriteria
+				.forClass(getPersistentClass()).addOrder(Order.asc("day"))
+				.addOrder(Order.asc("startTime")).createCriteria("teacher")
+				.add(Restrictions.eq("teacherNumber", teacherNo))
+				.createCriteria("school")
+				.add(Restrictions.eq("name", schoolName));
+		return findByCriteria(criteria);
+	}
+
 }

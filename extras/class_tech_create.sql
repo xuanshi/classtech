@@ -198,6 +198,7 @@ CREATE TABLE schedule (
     start_time time  NOT NULL,
     end_time time  NOT NULL,
     class_id bigint  NOT NULL,
+    teacher_id bigint  NOT NULL,
     curriculum_id bigint  NOT NULL,
     facility_id bigint  NOT NULL,
     CONSTRAINT schedule_pk PRIMARY KEY (id)
@@ -432,6 +433,16 @@ ALTER TABLE guardian ADD CONSTRAINT parent_person
 ALTER TABLE schedule ADD CONSTRAINT schedule_class 
     FOREIGN KEY (class_id)
     REFERENCES class (id)
+    NOT DEFERRABLE 
+    INITIALLY IMMEDIATE 
+;
+
+-- Reference:  schedule_teacher (table: schedule)
+
+
+ALTER TABLE schedule ADD CONSTRAINT schedule_teacher 
+    FOREIGN KEY (teacher_id)
+    REFERENCES teacher (person_id)
     NOT DEFERRABLE 
     INITIALLY IMMEDIATE 
 ;

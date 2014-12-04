@@ -24,7 +24,7 @@ public class SchedulesController {
 	public List<ScheduleDto> getSchoolClassSchedule(
 			@PathVariable String schoolName, @PathVariable String yearName,
 			@PathVariable String schoolClassName) {
-		return schedulesConverter.toSchoolScheduleDtos(scheduleDao.findByName(
+		return schedulesConverter.toScheduleDtos(scheduleDao.findByName(
 				schoolName, yearName, schoolClassName));
 	}
 

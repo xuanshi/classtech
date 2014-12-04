@@ -15,6 +15,8 @@ public class SchoolConverter {
 
 	@Autowired
 	private PersonConverter personConverter;
+	@Autowired
+	private SchedulesConverter schedulesConverter;
 
 	public List<SchoolDto> toSchoolDtos(List<School> schools) {
 		List<SchoolDto> schoolDtos = new ArrayList<SchoolDto>();
@@ -72,6 +74,7 @@ public class SchoolConverter {
 		dto.schoolName = schoolClass.getYear().getSchool().getName();
 		dto.manager = personConverter.toTeacherDto(schoolClass.getManager());
 		dto.students = personConverter.toStudentDtos(schoolClass.getStudents());
+		dto.schedules = schedulesConverter.toScheduleDtos(schoolClass.getSchedules());
 		return dto;
 	}
 

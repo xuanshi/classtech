@@ -38,7 +38,7 @@
 	<!-- **************************************************************** -->
 	<!-- DB Configuration -->
 	<!-- **************************************************************** -->
-	<context:property-placeholder location="classpath:db.aws.properties" />
+	<context:property-placeholder location="classpath:db.local.properties" />
 	<import resource="classpath:db.xml" />
 
 	<!-- **************************************************************** -->

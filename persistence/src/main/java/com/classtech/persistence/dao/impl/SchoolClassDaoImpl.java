@@ -1,5 +1,6 @@
 package com.classtech.persistence.dao.impl;
 
+import org.hibernate.FetchMode;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
@@ -17,6 +18,7 @@ public class SchoolClassDaoImpl extends GenericDaoImpl<SchoolClass> implements
 		DetachedCriteria criteria = DetachedCriteria
 				.forClass(getPersistentClass())
 				.add(Restrictions.eq("name", schoolClassName))
+				.setFetchMode("schedules", FetchMode.SELECT)
 				.createCriteria("year")
 				.add(Restrictions.eq("entranceYear", year))
 				.createCriteria("school")
